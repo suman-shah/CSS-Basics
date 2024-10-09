@@ -1,40 +1,125 @@
-/* styles-tips.css */
+/* Define CSS Variables */
+:root {
+    --primary-color: #333;
+    --secondary-color: #fff;
+    --background-color: #f0f0f0;
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
+    --transition-duration: 0.3s;
+}
 
-/* Basic styling for the navigation bar */
+/* Basic Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 20px;
+    transition: background-color var(--transition-duration);
+}
+
+header {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 10px 0;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
 nav {
-    background-color: #333;
-    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     padding: 10px;
     text-align: center;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
 nav a {
-    color: #fff;
+    color: var(--secondary-color);
     margin: 0 15px;
     text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: color var(--transition-duration);
 }
 
 nav a:hover {
     text-decoration: underline;
+    color: var(--secondary-color);
 }
 
-/* Basic styling for the page */
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+nav a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width var(--transition-duration);
 }
 
-h1, h2 {
-    color: #333;
-}
-
-ul {
-    list-style-type: square;
+nav a:hover::before {
+    width: 100%;
 }
 
 footer {
     text-align: center;
-    margin-top: 20px;
     padding: 10px;
-    background-color: #f0f0f0;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    margin-top: 20px;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+/* Flexbox container styling */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    transition: all var(--transition-duration);
+}
+
+/* Flex items */
+.flex-item {
+    background-color: var(--secondary-color);
+    border: 1px solid #ccc;
+    padding: 20px;
+    flex: 1 1 300px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px var(--box-shadow-color);
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.flex-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+    .flex-item {
+        flex: 1 1 100%; /* Stack items vertically on smaller screens */
+        padding: 5px;
+    }
+    
+    nav {
+        flex-direction: column; /* Stack the links vertically on smaller screens */
+        align-items: center;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+}
+
+/* Additional Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .flex-item {
+        flex: 1 1 45%; /* Show two items per row on medium screens */
+        padding: 5px;
+    }
 }

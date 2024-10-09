@@ -1,36 +1,164 @@
-/* styles-index.css */
+/* CSS Variables for easier theme management */
+:root {
+    --primary-color: #333;
+    --secondary-color: #fff;
+    --background-color: #f0f0f0;
+    --accent-color: #555;
+    --hover-color: #2d2d2d;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition-time: 0.3s;
+}
 
 /* Basic styling for the navigation bar */
 nav {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 15px 10%;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color var(--transition-time);
 }
 
 nav a {
-    color: #fff;
-    margin: 0 15px;
+    color: var(--secondary-color);
+    margin: 0 20px;
     text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: color var(--transition-time);
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width var(--transition-time);
+}
+
+nav a:hover::before {
+    width: 100%;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    color: var(--accent-color);
+    transition: color var(--transition-time);
+}
+
+/* Responsive navigation for small screens */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 5%;
+    }
+    
+    nav a {
+        margin: 10px 0;
+    }
 }
 
 /* Basic styling for the page */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    line-height: 1.6;
+    transition: background-color var(--transition-time);
 }
 
+/* Flexbox container styling */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px 0;
+    transition: all var(--transition-time);
+}
+
+.flex-item {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--shadow-color);
+    padding: 20px;
+    flex: 1 1 300px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    transition: transform var(--transition-time), box-shadow var(--transition-time);
+}
+
+.flex-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Header and text styling */
 h1, h2 {
-    color: #333;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: color var(--transition-time);
 }
 
+/* Footer styling */
 footer {
     text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f0f0f0;
+    margin-top: 40px;
+    padding: 15px;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    border-top: 1px solid var(--shadow-color);
+    transition: background-color var(--transition-time);
+}
+
+/* Hover effect for buttons */
+button {
+    appearance: none;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-time), box-shadow var(--transition-time);
+}
+
+button:hover {
+    background-color: var(--hover-color);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 1024px) {
+    .flex-item {
+        flex: 1 1 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .flex-item {
+        flex: 1 1 100%;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    footer {
+        padding: 10px;
+    }
 }
