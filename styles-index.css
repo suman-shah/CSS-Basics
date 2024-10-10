@@ -9,63 +9,6 @@
     --transition-time: 0.3s;
 }
 
-/* Basic styling for the navigation bar */
-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 15px 10%;
-    box-shadow: 0 4px 6px var(--shadow-color);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: background-color var(--transition-time);
-}
-
-nav a {
-    color: var(--secondary-color);
-    margin: 0 20px;
-    text-decoration: none;
-    font-weight: bold;
-    position: relative;
-    transition: color var(--transition-time);
-}
-
-nav a::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: var(--secondary-color);
-    transition: width var(--transition-time);
-}
-
-nav a:hover::before {
-    width: 100%;
-}
-
-nav a:hover {
-    color: var(--accent-color);
-    transition: color var(--transition-time);
-}
-
-/* Responsive navigation for small screens */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px 5%;
-    }
-    
-    nav a {
-        margin: 10px 0;
-    }
-}
-
 /* Basic styling for the page */
 body {
     font-family: 'Arial', sans-serif;
@@ -73,7 +16,34 @@ body {
     padding: 20px;
     background-color: var(--background-color);
     line-height: 1.6;
-    transition: background-color var(--transition-time);
+    overflow-x: hidden;
+}
+
+/* Navigation bar styling */
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--primary-color);
+    list-style-type: none;
+}
+
+ul li {
+    margin: 0 20px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    display: block;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+ul li a:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
 }
 
 /* Flexbox container styling */
@@ -83,7 +53,6 @@ body {
     justify-content: space-around;
     gap: 20px;
     padding: 20px 0;
-    transition: all var(--transition-time);
 }
 
 .flex-item {
@@ -110,36 +79,73 @@ h1, h2 {
     letter-spacing: 1px;
     text-align: center;
     margin-bottom: 20px;
-    transition: color var(--transition-time);
 }
 
 /* Footer styling */
-footer {
+.footer {
     text-align: center;
     margin-top: 40px;
     padding: 15px;
     background-color: var(--background-color);
     color: var(--primary-color);
     border-top: 1px solid var(--shadow-color);
-    transition: background-color var(--transition-time);
 }
 
-/* Hover effect for buttons */
-button {
-    appearance: none;
-    border: none;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color var(--transition-time), box-shadow var(--transition-time);
+/* Animation for the waves */
+.wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: url("svg.png");
+    background-size: 1000px 100px;
 }
 
-button:hover {
-    background-color: var(--hover-color);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+    0% {
+        background-position-x: 1000px;
+    }
+    100% {
+        background-position-x: 0px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: -1000px;
+    }
+    100% {
+        background-position-x: 0px;
+    }
 }
 
 /* Media Queries for smaller screens */
@@ -158,7 +164,7 @@ button:hover {
         padding: 10px;
     }
 
-    footer {
+    .footer {
         padding: 10px;
     }
 }

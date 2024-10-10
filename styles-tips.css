@@ -3,6 +3,8 @@
     --primary-color: #333;
     --secondary-color: #fff;
     --background-color: #f0f0f0;
+    --highlight-color: #ff497c;
+    --footer-color: #ff6900;
     --box-shadow-color: rgba(0, 0, 0, 0.1);
     --transition-duration: 0.3s;
 }
@@ -13,9 +15,11 @@ body {
     background-color: var(--background-color);
     margin: 0;
     padding: 20px;
+    overflow-x: hidden; /* Prevent horizontal overflow */
     transition: background-color var(--transition-duration);
 }
 
+/* Header Styling */
 header {
     text-align: center;
     background-color: var(--primary-color);
@@ -24,6 +28,7 @@ header {
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
+/* Navigation Bar Styling */
 nav {
     display: flex;
     flex-wrap: wrap;
@@ -64,16 +69,7 @@ nav a:hover::before {
     width: 100%;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    margin-top: 20px;
-    transition: background-color var(--transition-duration), color var(--transition-duration);
-}
-
-/* Flexbox container styling */
+/* Flexbox Container Styling */
 .flex-container {
     display: flex;
     flex-wrap: wrap;
@@ -82,7 +78,6 @@ footer {
     transition: all var(--transition-duration);
 }
 
-/* Flex items */
 .flex-item {
     background-color: var(--secondary-color);
     border: 1px solid #ccc;
@@ -99,15 +94,80 @@ footer {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--footer-color);
+    color: var(--secondary-color);
+    margin-top: 20px;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+/* Wave Animations for the Footer */
+.wave {
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    background: url("svg.png"); /* Ensure this path is correct */
+    background-size: 1000px 100px;
+}
+
+.wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+    0% {
+        background-position-x: 1000px;
+    }
+    100% {
+        background-position-x: 0px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: -1000px;
+    }
+    100% {
+        background-position-x: 0px;
+    }
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 768px) {
     .flex-item {
-        flex: 1 1 100%; /* Stack items vertically on smaller screens */
+        flex: 1 1 100%;
         padding: 5px;
     }
     
     nav {
-        flex-direction: column; /* Stack the links vertically on smaller screens */
+        flex-direction: column;
         align-items: center;
     }
 
@@ -116,10 +176,9 @@ footer {
     }
 }
 
-/* Additional Responsive Breakpoints */
 @media (max-width: 1024px) {
     .flex-item {
-        flex: 1 1 45%; /* Show two items per row on medium screens */
+        flex: 1 1 45%;
         padding: 5px;
     }
 }
